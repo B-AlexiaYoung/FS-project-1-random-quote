@@ -88,7 +88,7 @@ let colors=[
 //  function to get random quote
 function getRandomQuote () {
   let randomNum= Math.floor(Math.random() * quotes.length);
-  console.log(randomNum);
+  //console.log(randomNum);
   return randomNum;
 }
 
@@ -108,14 +108,14 @@ function printQuote (){
     let getRandomNum= getRandomQuote();
     newQuote.innerHTML= quotes[getRandomNum].quote;
     newSource[0].innerHTML= quotes[getRandomNum].source;
-    console.log(quotes[getRandomNum].citation);
+    //console.log(quotes[getRandomNum].citation);
 
 // condtional to check for citation property and insert into DOM
     if(quotes[getRandomNum].hasOwnProperty("citation")=== true ){
-        console.log(quotes[getRandomNum].citation);
+        //console.log(quotes[getRandomNum].citation);
         let newCitation=document.createElement("span");
         newCitation.classList.add("citation");
-        console.log(newCitation);
+        //console.log(newCitation);
         newCitation.innerHTML=quotes[getRandomNum].citation;
         newSource[0].appendChild(newCitation); 
 } //end printQuote
