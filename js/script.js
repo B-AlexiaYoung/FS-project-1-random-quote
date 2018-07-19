@@ -16,7 +16,8 @@ let quotes= [
         quote : "Time is a game played beautifully by children",
         source : " Heraclitus",
         category : "time",
-        citation: "fragments"
+        citation: "fragments",
+        year: "c. 535 – c. 475 BC"
     },
     {
         quote : "The only true wisdom is in knowing you know nothing",
@@ -32,7 +33,8 @@ let quotes= [
         quote : "The eye sees only what the mind is prepared to comprehend",
         source : "Robertson Davies",
         category : "knowledge",
-        citation: "Tempest Lost"
+        citation: "Tempest Lost",
+        year:"published 1951"
     },
     {
         quote : "We have to dare to be ourselves, however frightening or strange that self may prove to be",
@@ -43,7 +45,8 @@ let quotes= [
         quote : "Life's under no obligation to give us what we expect",
         source : "Margaret Mitchell",
         category : "life",
-        citation: "Gone with the Wind."
+        citation: "Gone with the Wind.",
+        year:"published 1936"
     },
     {
         quote : "The most wasted of all days is one without laughter",
@@ -98,8 +101,48 @@ function changeBackground(){
     return randomColor;
 }
 
-// function to display new quote and background color
-function printQuote (){
+// function to display new quote and background color  Using a string
+function printQuote(){
+    let getRandomNum= getRandomQuote();
+    let getRandomColor= changeBackground();
+    let body = document.getElementById("body");
+    body.style.backgroundColor= colors[getRandomColor].color;
+
+    let nextQuote= '<p class="quote">' + quotes[getRandomNum].quote + '</p>';
+    nextQuote += '<p class="source">' + quotes[getRandomNum].source;
+// check for citation property in object
+        if(quotes[getRandomNum].hasOwnProperty("citation")=== true ){
+            nextQuote +='<span class="citation">' + quotes[getRandomNum].citation + '</span>'
+        }
+
+// check for citation year prop in object
+        if(quotes[getRandomNum].hasOwnProperty("year")=== true){
+            nextQuote += '<span class="year">' + quotes[getRandomNum].year +'</span>'
+        }
+
+//add category
+    nextQuote += '<span class="category">' + quotes[getRandomNum].category +'</span>'
+    nextQuote += '</p>'
+    document.getElementById("quote-box").innerHTML = nextQuote;
+}
+
+//function to auto refresh quote
+setInterval(function(){  
+    printQuote();
+    }, 5000);
+    
+//event listener on button
+let button= document.getElementById('loadQuote');
+button.addEventListener("click", (printQuote),false,  {
+});
+
+
+
+//******************************************************************************* */
+// Had to change this for the above function to fulfill project requirements
+//function to display new quote and background color  
+
+/*function printQuote (){
     let newQuote= document.getElementById("singleQuote");
     let newSource= document.getElementsByClassName("source");
     let getRandomColor= changeBackground();
@@ -125,15 +168,7 @@ let newCategory = document.createElement("span");
 newCategory.textContent= quotes[getRandomNum].category;
 newCategory.classList.add("category");
 newSource[0].appendChild(newCategory);
-}
+}*/
 
-//function to auto refresh quote
-setInterval(function(){  
-printQuote();
-}, 5000);
 
-//event listener on button
-let button= document.getElementById('loadQuote');
-button.addEventListener("click", (printQuote),false,  {
-});
 

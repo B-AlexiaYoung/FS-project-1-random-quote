@@ -47,6 +47,8 @@ body {
 }
 .citation {
   font-style: italic;
+  text-align: right;
+
 }
 .citation:before {
   content: ", ";
@@ -59,6 +61,8 @@ body {
 .category:before {
   content: ", tag: ";
   font-style:normal;
+  text-align: right;
+
 }
 #loadQuote {
   position: fixed;
