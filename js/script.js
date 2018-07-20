@@ -2,7 +2,7 @@
 // when user clicks anywhere on the button, the "printQuote" function is called
 /*jshint esversion: 6 */
 
-let ticker = 5000;
+let ticker = 15000;
 let quotes= [
     {
     quote : "Books have a unique way of stopping time in a particular moment and saying: Let’s not forget this",
@@ -86,7 +86,7 @@ let colors=[
     color: "rgb(43, 66, 9)"  //olive
 },
 {
-    color: "rgb(43, 66, 9)"  //olive
+    color: "rgb(86, 75, 79)"  //mushroom
 },
 ]
 
