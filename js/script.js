@@ -1,6 +1,8 @@
 // event listener to respond to "Show another quote" button clicks
 // when user clicks anywhere on the button, the "printQuote" function is called
+/*jshint esversion: 6 */
 
+let ticker = 5000;
 let quotes= [
     {
     quote : "Books have a unique way of stopping time in a particular moment and saying: Let’s not forget this",
@@ -91,7 +93,6 @@ let colors=[
 //  function to get random quote
 function getRandomQuote () {
   let randomNum= Math.floor(Math.random() * quotes.length);
-  //console.log(randomNum);
   return randomNum;
 }
 
@@ -99,24 +100,27 @@ function getRandomQuote () {
 function changeBackground(){
     let randomColor= Math.floor(Math.random() * colors.length);
     return randomColor;
+    
 }
 
-// function to display new quote and background color  Using a string
+// function Using a string to display new quote. Change background color and button background. 
 function printQuote(){
     let getRandomNum= getRandomQuote();
     let getRandomColor= changeBackground();
     let body = document.getElementById("body");
     body.style.backgroundColor= colors[getRandomColor].color;
+    let button=document.getElementById("loadQuote");
+    button.style.backgroundColor=colors[getRandomColor].color;
 
     let nextQuote= '<p class="quote">' + quotes[getRandomNum].quote + '</p>';
     nextQuote += '<p class="source">' + quotes[getRandomNum].source;
 // check for citation property in object
-        if(quotes[getRandomNum].hasOwnProperty("citation")=== true ){
+        if(quotes[getRandomNum].hasOwnProperty("citation") === true ){
             nextQuote +='<span class="citation">' + quotes[getRandomNum].citation + '</span>'
         }
 
 // check for citation year prop in object
-        if(quotes[getRandomNum].hasOwnProperty("year")=== true){
+        if(quotes[getRandomNum].hasOwnProperty("year") === true){
             nextQuote += '<span class="year">' + quotes[getRandomNum].year +'</span>'
         }
 
@@ -124,17 +128,29 @@ function printQuote(){
     nextQuote += '<span class="category">' + quotes[getRandomNum].category +'</span>'
     nextQuote += '</p>'
     document.getElementById("quote-box").innerHTML = nextQuote;
+}//end printQuote
+
+// auto refresh quote
+let timer = setInterval(printQuote, ticker)
+
+// function to reset refresh rate on auto refresh
+function reset(){
+    if(timer){
+        window.clearInterval(timer);
+        timer = setInterval(printQuote, ticker)
+    }
 }
 
-//function to auto refresh quote
-setInterval(function(){  
-    printQuote();
-    }, 5000);
-    
+  
 //event listener on button
 let button= document.getElementById('loadQuote');
-button.addEventListener("click", (printQuote),false,  {
-});
+    button.addEventListener("click", () =>{
+        reset();
+        printQuote();
+
+    });
+    
+
 
 
 
